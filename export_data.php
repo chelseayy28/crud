@@ -13,22 +13,20 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 
-$columns = ['id_pelanggan', 'nama', 'username', 'password','no_telpon'];  // Kolom yang akan ditulis
+$columns = ['id_pelanggan', 'nama_barang', 'merk_barang' ,'jumlah_barang'];  // Kolom yang akan ditulis
 $sheet->setCellValue('A1', $columns[0]);
 $sheet->setCellValue('B1', $columns[1]);
 $sheet->setCellValue('C1', $columns[2]);
 $sheet->setCellValue('D1', $columns[3]);
-$sheet->setCellValue('E1', $columns[4]);
 
 
 // Menulis data pelanggan
 $no = 2;
 while ($row = mysqli_fetch_assoc($result)) {
     $sheet->setCellValue('A' . $no, $no - 1);  
-    $sheet->setCellValue('B' . $no, $row['nama']); 
-    $sheet->setCellValue('C' . $no, $row['username']); 
-    $sheet->setCellValue('D' . $no, $row['password']); 
-    $sheet->setCellValue('E' . $no, $row['no_telpon']);
+    $sheet->setCellValue('B' . $no, $row['nama_barang']); 
+    $sheet->setCellValue('C' . $no, $row['merk_barang']); 
+    $sheet->setCellValue('D' . $no, $row['jumlah_barang']); 
     $no++;
 }
 

@@ -1,4 +1,64 @@
-<!DOCTYPE html>
+<?php
+include '../koneksi.php';
+$query = "SELECT * FROM pelanggan";
+$sql = mysqli_query($koneksi, $query);
+$no = 0;
+
+  // Export to Word functionality
+  if (isset($_GET['export']) && $_GET['export'] === 'word') {
+
+    // Memberitahu browser bahwa konten adalah file Word
+    // Mengatur nama file yang akan didownload dengan format "data_user_[tanggal&waktu].doc"
+    header("Content-Type: application/vnd.ms-word");
+    header("Content-Disposition: attachment; filename=crud" . date('Ymd_His') . ".doc");
+
+    // Membuat struktur HTML yang akan dikonversi menjadi dokumen Word
+    echo "<html>";
+    echo "<head>";
+    echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>";
+    echo "<title>Data User</title>";
+    echo "</head>";
+    echo "<body>";
+
+    // Membuat judul dokumen
+    // Membuat tabel dengan border
+    // Mendefinisikan header kolom tabel
+    echo "<h2>Data barang</h2>";
+    echo "<table border='1'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>No</th>";
+    echo "<th>id_pelanggan</th>";
+    echo "<th>nama_barang</th>";
+    echo "<th>merk_barang</th>";
+    echo "<th>jumlah_barang</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    // Mengambil data dari database
+    $no = 1;
+    $result = mysqli_query($koneksi, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $no++ . "</td>";
+        echo "<td>" . htmlspecialchars($row['id_pelanggan']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['nama_barang']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['merk_barang']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['jumlah_barang']) . "</td>";
+        echo "</tr>";
+    }
+
+    // Menutup semua tag HTML
+    echo "</tbody>";
+    echo "</table>";
+    echo "</body>";
+    echo "</html>";
+
+    exit;
+  }
+?>
+  <!DOCTYPE html>
 <html>
 <head>
     <title>tampilan</title>
@@ -34,11 +94,14 @@
         <a href="../export_data.php" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                     <i class="fas fa-download fa-sm text-white-50"></i> Export ke Excel
                 </a>
+        <a href="?export=word" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                    <i class="fas fa-download fa-sm text-white-50"></i> Export ke word
+                </a>
         <?php
         include '../koneksi.php';
         if(isset($_GET['cari'])){
           $cari = $_GET['cari'];
-          $query = mysqli_query($koneksi,"SELECT * FROM pelanggan WHERE nama like '%".$cari."%'");                
+          $query = mysqli_query($koneksi,"SELECT * FROM pelanggan WHERE nama_barang like '%".$cari."%'");                
         }else{
           $query = mysqli_query($koneksi,"SELECT * FROM pelanggan");        
         }
@@ -48,9 +111,9 @@
  
         <tr>
             <td><?php echo $hasil['id_pelanggan']; ?></td>
-            <td><?php echo $hasil['nama']; ?></td>
-            <td><?php echo $hasil['username']; ?></td>
-            <td><?php echo $hasil['no_telpon']; ?></td>
+            <td><?php echo $hasil['nama_barang']; ?></td>
+            <td><?php echo $hasil['merk_barang']; ?></td>
+            <td><?php echo $hasil['jumlah_barang']; ?></td>
             <td>
                 <a href="../update.php?id_pelanggan=<?php echo $id_pelanggan; ?>" type="button" class="btn btn-success btn-sm">Edit</a>                                                  
                 <!-- Button trigger modal -->

@@ -1,11 +1,11 @@
 <?php
 include("koneksi.php");
 if(isset($_POST["submit"])) {
-    $name = $_POST["nama"];
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $no_telpon = $_POST["no_telpon"];
-        $query = "INSERT INTO pelanggan VALUES ('','$name', '$username','$password', '$no_telpon')";
+    $id_pelanggan = $_POST["id_pelanggan"];
+    $nama_barang = $_POST["nama_barang"];
+    $merk_barang = $_POST["merk_barang"];
+    $jumlah_barang = $_POST["jumlah_barang"];
+        $query = "INSERT INTO pelanggan VALUES ('','$nama_barang', '$merk_barang','$jumlah_barang')";
         mysqli_query($koneksi, $query);
         header ("location:admin/pengguna.php");
 }
@@ -24,18 +24,18 @@ if(isset($_POST["submit"])) {
     <center><h1 class="judul">Form</h1></center>
     <div class="container-fluid">
         <form action="tambah.php" method="post">
-            <label for="nama">Nama Barang</label>
+            <label for="nama_barang">Nama Barang</label>
             <div class="user-box">
-                <input type="text" name="nama" id="nama" required value="">
+                <input type="text" name="nama_barang" id="nama_barang" required value="">
             </div>
-            <label for="username">Merk Barang</label>
+            <label for="merk_barang">Merk Barang</label>
             <div class="user-box">
-                <input type="text" name="username" id="username" required value="">
+                <input type="text" name="merk_barang" id="merk_barang" required value="">
             </div>
             <br>
-            <label for="no_telpon">Jumlah Barang</label>
+            <label for="jumlah_barang">Jumlah Barang</label>
             <div class="user-box">    
-                <input type="number" name="no_telpon" id="no_telpon" required value="">   
+                <input type="number" name="jumlah_barang" id="jumlah_barang" required value="">   
             </div>
 
             <center><input type="submit" name="submit" class="tombol_login"></center>

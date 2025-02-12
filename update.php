@@ -18,14 +18,14 @@
         <form action="proses_update.php" method="POST">
 
         <input type="hidden" name="id_pelanggan" value="<?php echo $hasil['id_pelanggan']; ?>">
-            <label for="nama">Nama Barang:</label>
-            <input type="text" name="nama" value="<?php echo $hasil['nama']; ?>" id="nama" > <br>
+            <label for="nama_barang">Nama Barang:</label>
+            <input type="text" name="nama_barang" value="<?php echo $hasil['nama_barang']; ?>" id="nama_barang" > <br>
 
-            <label for="username">Merk Barang:</label>
-            <input type="text" name="username" value="<?php echo $hasil['username']; ?>" id="username" > <br>
+            <label for="merk_barang">Merk Barang:</label>
+            <input type="text" name="merk_barang" value="<?php echo $hasil['merk_barang']; ?>" id="merk_barang" > <br>
 
-            <label for="no_telpon">Jumlah Barang:</label>
-            <input type="tel" name="no_telpon" value="<?php echo $hasil['no_telpon']; ?>" id="no_telpon" > <br>
+            <label for="jumlah_barang">Jumlah Barang:</label>
+            <input type="number" name="jumlah_barang" value="<?php echo $hasil['jumlah_barang']; ?>" id="jumlah_barang" > <br>
 
             <input type="submit" value="edit">
     </div>
