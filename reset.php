@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
 
     
     // Update password 
-    $query = "UPDATE login SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = ?";
-    $stmt = $conn->prepare($query);
+    $query = "UPDATE inventaris SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = ?";
+    $stmt = $koneksi->prepare($query);
     $stmt->bind_param("ss", $password, $token);
     
     if ($stmt->execute()) {
@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -180,11 +181,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
         <div class="header">
             <h1>Reset Password</h1>
             <form method="post">
-        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
-    </form>
             <p>Silakan masukkan password baru Anda</p>
         </div>
-        <form>
+        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
             <div class="form-group">
                 <label for="password">Password Baru</label>
                 <input 

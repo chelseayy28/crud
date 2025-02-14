@@ -22,11 +22,11 @@
                         <input type="password" name="password" id="password" required="">   
                     </div>
                     <center><input type="submit" class="tombol_login" value="LOGIN"></center>
-                    
+                    <center><p><a href="lupa.php">Lupa Password</a></p></center>                   
                     <center><a href="google_login.php" class="btn btn-danger btn-block">
                         <i class="fab fa-google">login email</i>
                     </a></center>
-                    <center><p>Don't have an account?<a href="register.php">Register</a></p></center>
+                    <center><p>Don't have an account?<a href="register.php">Register</a></p></center>                   
                 </form>
         </div>
 </body>

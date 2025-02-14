@@ -23,7 +23,7 @@ $sheet->setCellValue('D1', $columns[3]);
 // Menulis data pelanggan
 $no = 2;
 while ($row = mysqli_fetch_assoc($result)) {
-    $sheet->setCellValue('A' . $no, $no - 1);  
+    $sheet->setCellValue('A' . $no, $row['id_pelanggan']); 
     $sheet->setCellValue('B' . $no, $row['nama_barang']); 
     $sheet->setCellValue('C' . $no, $row['merk_barang']); 
     $sheet->setCellValue('D' . $no, $row['jumlah_barang']); 
